@@ -1,18 +1,17 @@
 # 3D rendering automated by OpenAI
 
-This website automatically generate 3D rendering from high-level natural language by communicating with OpenAI.
-A command of a natural language is entered into a text box at the top of the website, and clicking "Modify scene" button triggers a message to a server ("app.py"). The server interprets the command and dynamically generates the corresponding Three.js script. The new scripts are fetched on the client, and the 3D view is instantly updated. 
+This website automatically generates 3D rendering from high-level natural language by communicating with OpenAI.
+A natural language command is entered into a text box at the top of the website, and clicking the "Modify scene" button triggers a message to a server (app.py). The server interprets the command and dynamically generates the corresponding Three.js script. The new script is fetched on the client, and the 3D view is instantly updated. 
 
 [![Automate 3D rendering](https://img.youtube.com/vi/Eq8SnbMB7-o/0.jpg)](https://www.youtube.com/watch?v=Eq8SnbMB7-o)
 
-
 ## Protocol to OpenAI
 
-* OpenAI requires OpenAI API key, the model of OpenAI, and messages.
+* OpenAI requires an API key, a model name, and a set of messages.
 
 * The message defines the conversation history sent to the model. 
 
-In this code, the message contains a role of OpenAI, task & restrictions, examples, prohibited conditions, and user command.
+In this code, the message includes the role, tasks and restrictions, examples, prohibited conditions, and user command.
 
   ```Python
             messages=[
@@ -53,7 +52,7 @@ Second, open another terminal to run the following command telling Node.js to ru
 npm run dev
 </code></pre>
 
-Finally, open web brouser, and enter http://localhost:5173/ to an address bar, which result in opening the website displaying 3D model.
+Finally, open a web browser, and enter http://localhost:5173/ to an address bar, which results in opening the website displaying a rotating red cube.
 
 <p align="left">
   <img src="README.assets/website.png" width=50%/>
