@@ -3,6 +3,9 @@
 This website automatically generate 3D rendering from high-level natural language by communicating with OpenAI.
 A command of a natural language is entered into a text box at the top of the website, and clicking "Modify scene" button triggers a message to a server ("app.py"). The server interprets the command and dynamically generates the corresponding Three.js script. The new scripts are fetched on the client, and the 3D view is instantly updated. 
 
+[![Automate 3D rendering](https://img.youtube.com/vi/Eq8SnbMB7-o/0.jpg)](https://www.youtube.com/watch?v=Eq8SnbMB7-o)
+
+
 ## Protocol to OpenAI
 
 * OpenAI requires OpenAI API key, the model of OpenAI, and messages.
@@ -52,4 +55,7 @@ npm run dev
 
 Finally, open web brouser, and enter http://localhost:5173/ to an address bar, which result in opening the website displaying 3D model.
 
+<p align="left">
+  <img src="README.assets/website.png" width=50%/>
+</p>
   
