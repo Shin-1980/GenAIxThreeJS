@@ -6,7 +6,10 @@ from fastapi.responses import JSONResponse
 from openai import OpenAI  
 from datetime import datetime
 
+# Input OpenAI API KEY
 api_key = ""
+
+# Input the model of OpenAI
 model = ""
 
 if not api_key:
