@@ -39,16 +39,16 @@ In this code, the message contains a role of OpenAI, task & restrictions, exampl
 
 First, open a terminal to execute the following code to run a FastAPI web application using Uvicorn, an ASGI web server. 
 
-<pre><code>```
+<pre><code>
 cd GenAIxThreeJS
 uvicorn app:app --reload; 
-``` </code></pre>
+</code></pre>
 
 Second, open another terminal to run the following command telling Node.js to run a custom script named dev that's defined in the project's
 
-<pre><code>```
+<pre><code>
 npm run dev
-``` </code></pre>
+</code></pre>
 
 Finally, open web brouser, and enter http://localhost:5173/ to an address bar, which result in opening the website displaying 3D model.
 
