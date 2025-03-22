@@ -59,7 +59,7 @@ Second, open another terminal to run the following command telling Node.js to ru
 npm run dev
 </code></pre>
 
-Finally, open a web browser, and enter http://localhost:5173/ to an address bar, which results in opening the website displaying a rotating red cube.
+Finally, open a web browser, and enter http://localhost:5173/ to an address bar, which results in opening the website displaying a rotating red cube. It's time to begin entering commands!
 
 <p align="left">
   <img src="README.assets/website.png" width=50%/>
