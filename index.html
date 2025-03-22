@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Generated Three.js Scene</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 10;">
+        <input type="text" id="command"
+               placeholder="Enter a command (e.g., 'Create a blue cube')"
+               style="width: 600px; height: 20px; padding: 10px; font-size: 18px;" />
+        <button onclick="updateScene()" style="padding: 10px 20px; font-size: 18px;">Modify Scene</button>
+    </div>
+    
+    <script>
+        let scene, camera, renderer, objects = [];
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            camera.position.set(0, 0, 5);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Smooth motion
+            controls.dampingFactor = 0.05;
+
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
+            const testCube = new THREE.Mesh(geometry, material);
+            scene.add(testCube);
+
+            animate();
+        }
+
+        function loadScript() {
+            fetch("http://localhost:8000/get_script")
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(apiData => {
+                    console.log("Fetched AI-generated script:", apiData);
+
+                    const scriptCode = apiData.script?.trim();
+                    if (!scriptCode) {
+                        console.error("No script received from API.");
+                        return;
+                    }
+
+                    try {
+                        scene.clear();
+                        objects = [];
+
+                        // Run the script only if valid
+                        const runScript = new Function("scene", "THREE", "objects", scriptCode);
+                        runScript(scene, THREE, objects);
+
+                        console.log(runScript)
+                    } catch (error) {
+                        console.error("Error executing AI-generated script:", error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Failed to fetch AI script:", error);
+                });
+        }
+        function animate() {
+            requestAnimationFrame(animate);
+
+            scene.children.forEach(obj => {
+                if (obj.rotation) obj.rotation.y += 0.01; // Rotate objects
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        function updateScene() {
+            const inputField = document.getElementById("command");
+            const userCommand = inputField.value.trim();  // Trim to remove extra spaces
+
+            if (!userCommand) {
+                console.warn("User did not enter a command.");
+                return;
+            }
+            console.log("User entered command:", userCommand);
+
+            if (!userCommand) {
+                alert("Please enter a command.");
+                inputField.focus();  // Keep focus on the input field
+                return;
+            }
+
+            fetch("http://127.0.0.1:8000/update_script", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ command: userCommand })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "updated") {
+                    console.log("updated")
+                    loadScript();  // Reload the updated Three.js scene
+                } else {
+                    console.error("AI failed to update the scene.");
+                }
+            })
+            .catch(error => {
+                console.error("Error updating scene:", error);
+            });
+        }
+        
+        init();
+    </script>
+</body>
+</html>
