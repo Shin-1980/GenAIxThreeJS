@@ -39,20 +39,27 @@ In this code, the message includes the role, tasks and restrictions, examples, p
 
 ## How to run
 
-First, open a terminal to execute the following code to run a FastAPI web application using Uvicorn, an ASGI web server. 
+* First, open a terminal to execute the following code to run a FastAPI web application using Uvicorn, an ASGI web server. 
 
 <pre><code>
 cd GenAIxThreeJS
 uvicorn app:app --reload; 
 </code></pre>
 
-Second, open another terminal to run the following command telling Node.js to run a custom script named dev that's defined in the project's
+If both OpenAI API and the name of the model are properly set up, a terminal will display the following output. 
+
+<p align="left">
+  <img src="README.assets/terminal.png" width=50%/>
+</p>
+
+
+* Second, open another terminal to run the following command telling Node.js to run a custom script named dev that's defined in the project's
 
 <pre><code>
 npm run dev
 </code></pre>
 
-Finally, open a web browser, and enter http://localhost:5173/ to an address bar, which results in opening the website displaying a rotating red cube.
+* Finally, open a web browser, and enter http://localhost:5173/ to an address bar, which results in opening the website displaying a rotating red cube.
 
 <p align="left">
   <img src="README.assets/website.png" width=50%/>
