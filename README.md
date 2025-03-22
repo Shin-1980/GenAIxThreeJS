@@ -49,7 +49,7 @@ uvicorn app:app --reload;
 If both OpenAI API and the name of the model are properly set up, a terminal will display the following output. 
 
 <p align="left">
-  <img src="README.assets/terminal.png" width=50%/>
+  <img src="README.assets/terminal.png" width=80%/>
 </p>
 
 
