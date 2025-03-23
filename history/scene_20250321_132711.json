@@ -1,0 +1,4 @@
+{
+  "command": "create 300 toruses which are like spinning petals",
+  "script": "const torusGeometry = new THREE.TorusGeometry(1, 0.4, 16, 100);\nconst torusMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });\n\nfor (let i = 0; i < 300; i++) {\n  const torus = new THREE.Mesh(torusGeometry, torusMaterial);\n  torus.position.set(Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50);\n  torus.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);\n  scene.add(torus);\n}"
+}
