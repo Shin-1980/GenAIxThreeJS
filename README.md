@@ -43,6 +43,7 @@ First, open a terminal to execute the following code to run a FastAPI web applic
 
 <pre><code>
 cd GenAIxThreeJS-main
+npm install
 uvicorn app:app --reload
 </code></pre>
 
