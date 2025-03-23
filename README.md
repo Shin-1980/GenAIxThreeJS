@@ -57,6 +57,7 @@ If both OpenAI API and the name of the model are properly set up, a terminal wil
 Second, open another terminal to run the following command telling Node.js to run a custom script named dev that's defined in the project.
 
 <pre><code>
+cd GenAIxThreeJS-main
 npm run dev
 </code></pre>
 
