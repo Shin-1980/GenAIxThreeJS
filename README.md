@@ -42,8 +42,8 @@ In this code, the message includes the role, tasks and restrictions, examples, p
 First, open a terminal to execute the following code to run a FastAPI web application using Uvicorn, an ASGI web server. 
 
 <pre><code>
-cd GenAIxThreeJS
-uvicorn app:app --reload; 
+cd GenAIxThreeJS-main
+uvicorn app:app --reload
 </code></pre>
 
 If both OpenAI API and the name of the model are properly set up, a terminal will display the following output. 
